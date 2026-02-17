@@ -6,12 +6,16 @@ public class PalindromeCheckerApp {
     // Main method - entry point of Java application
     public static void main(String[] args) {
 
+        String word = "madam";
+        String reversed = "";
 
-        System.out.println("Welcome to Palindrome Checker Management System ");
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reversed += word.charAt(i);
+        }
 
-        System.out.println("Version : 1.0");
+        boolean isPalindrome = word.equals(reversed);
 
-        System.out.println("System Initialized successfully.");
-
+        System.out.println("Input text : madam");
+        System.out.println("Is it a palindrome? " + isPalindrome);
     }
 }
