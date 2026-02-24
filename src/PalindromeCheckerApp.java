@@ -3,7 +3,7 @@
 // Class acts as container for application logic
 import java.util.Scanner;
 
-public class gitPalindromeCheckerApp {
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
