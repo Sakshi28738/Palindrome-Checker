@@ -1,21 +1,37 @@
 // UseCase1PalindromeCheckerApp.java
 
 // Class acts as container for application logic
+import java.util.Scanner;
+
 public class PalindromeCheckerApp {
 
-    // Main method - entry point of Java application
     public static void main(String[] args) {
 
-        String word = "madam";
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
+
         String reversed = "";
 
-        for (int i = word.length() - 1; i >= 0; i--) {
-            reversed += word.charAt(i);
+        // Reverse string using loop
+        for (int i = input.length() - 1; i >= 0; i--) {
+            reversed = reversed + input.charAt(i);
         }
 
-        boolean isPalindrome = word.equals(reversed);
+        // Compare original and reversed
+        if (input.equals(reversed)) {
+            System.out.println("The string is a Palindrome");
+        } else {
+            System.out.println("The string is NOT a Palindrome");
+        }
 
-        System.out.println("Input text : madam");
-        System.out.println("Is it a palindrome? " + isPalindrome);
+        sc.close();
     }
 }
+
+
+
+
+
+
