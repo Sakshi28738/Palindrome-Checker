@@ -2,8 +2,7 @@
 
 // Class acts as container for application logic
 
-import java.util.Deque;
-import java.util.ArrayDeque;
+import java.util.LinkedList;
 
 public class PalindromeCheckerApp {
 
@@ -11,24 +10,24 @@ public class PalindromeCheckerApp {
 
 
 
-        // Define input string
-        String input = "refer";
+        // Define the input string
+        String input = "level";
 
-        // Create Deque to store characters
-        Deque<Character> deque = new ArrayDeque<>();
+        // Create a LinkedList to store characters
+        LinkedList<Character> list = new LinkedList<>();
 
-        // Add characters to deque
+        // Add each character to the linked list
         for (char c : input.toCharArray()) {
-            deque.addLast(c);
+            list.add(c);
         }
 
-        // Flag to track palindrome result
+        // Flag to track palindrome state
         boolean isPalindrome = true;
 
-        // Compare front and rear characters
-        while (deque.size() > 1) {
+        // Compare elements from both ends
+        while (list.size() > 1) {
 
-            if (deque.removeFirst() != deque.removeLast()) {
+            if (list.removeFirst() != list.removeLast()) {
                 isPalindrome = false;
                 break;
             }
