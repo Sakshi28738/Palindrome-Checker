@@ -1,4 +1,6 @@
 
+
+
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
@@ -8,63 +10,57 @@ public class PalindromeCheckerApp {
         String input = "level";
 
 
-        PalindromeStrategy strategy;
+        long start1 = System.nanoTime();
+        boolean result1 = twoPointerCheck(input);
+        long end1 = System.nanoTime();
+        long time1 = end1 - start1;
 
 
-        strategy = new StackStrategy();
+        long start2 = System.nanoTime();
+        boolean result2 = reverseCheck(input);
+        long end2 = System.nanoTime();
+        long time2 = end2 - start2;
 
 
-        boolean isPalindrome = strategy.check(input);
+        boolean finalResult = result1;
+
+
+        long executionTime = Math.min(time1, time2);
+
 
         System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println("Is Palindrome? : " + finalResult);
+        System.out.println("Execution Time : " + executionTime + " ns");
     }
-}
-
-interface PalindromeStrategy {
-    boolean check(String input);
-}
 
 
-class StackStrategy implements PalindromeStrategy {
+    public static boolean twoPointerCheck(String input) {
 
-    public boolean check(String input) {
+        int start = 0;
+        int end = input.length() - 1;
 
-        java.util.Stack<Character> stack = new java.util.Stack<>();
+        while (start < end) {
 
-        for (char c : input.toCharArray()) {
-            stack.push(c);
-        }
-
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
+            if (input.charAt(start) != input.charAt(end)) {
                 return false;
             }
+
+            start++;
+            end--;
         }
 
         return true;
     }
-}
 
 
-class DequeStrategy implements PalindromeStrategy {
+    public static boolean reverseCheck(String input) {
 
-    public boolean check(String input) {
+        String reversed = "";
 
-        java.util.Deque<Character> deque =
-                new java.util.ArrayDeque<>();
-
-        for (char c : input.toCharArray()) {
-            deque.addLast(c);
+        for (int i = input.length() - 1; i >= 0; i--) {
+            reversed += input.charAt(i);
         }
 
-        while (deque.size() > 1) {
-            if (!deque.removeFirst()
-                    .equals(deque.removeLast())) {
-                return false;
-            }
-        }
-
-        return true;
+        return input.equals(reversed);
     }
 }
