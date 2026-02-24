@@ -1,34 +1,38 @@
 // UseCase1PalindromeCheckerApp.java
 
 // Class acts as container for application logic
-import java.util.Scanner;
+import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
 
-        System.out.print("Input: ");
-        String input = sc.nextLine();
 
-        char[] chars = input.toCharArray();
+        // Declare and initialize input string
+        String input = "noon";
 
-        int start = 0;
-        int end = chars.length - 1;
+        // Create a Stack to store characters
+        Stack<Character> stack = new Stack<>();
+
+        // Push each character into the stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        // Assume palindrome initially
         boolean isPalindrome = true;
 
-        while (start < end) {
-            if (chars[start] != chars[end]) {
+        // Compare original string with popped characters
+        for (char c : input.toCharArray()) {
+
+            if (c != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
 
+        System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
-
-        sc.close();
     }
 }
