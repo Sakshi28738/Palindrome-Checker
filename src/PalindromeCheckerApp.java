@@ -3,35 +3,32 @@
 // Class acts as container for application logic
 import java.util.Scanner;
 
-public class PalindromeCheckerApp {
+public class gitPalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter a string: ");
+        System.out.print("Input: ");
         String input = sc.nextLine();
 
-        String reversed = "";
+        char[] chars = input.toCharArray();
 
-        // Reverse string using loop
-        for (int i = input.length() - 1; i >= 0; i--) {
-            reversed = reversed + input.charAt(i);
+        int start = 0;
+        int end = chars.length - 1;
+        boolean isPalindrome = true;
+
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
         }
 
-        // Compare original and reversed
-        if (input.equals(reversed)) {
-            System.out.println("The string is a Palindrome");
-        } else {
-            System.out.println("The string is NOT a Palindrome");
-        }
+        System.out.println("Is Palindrome? : " + isPalindrome);
 
         sc.close();
     }
 }
-
-
-
-
-
-
