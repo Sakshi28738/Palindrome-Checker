@@ -2,9 +2,8 @@
 
 // Class acts as container for application logic
 
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.Deque;
+import java.util.ArrayDeque;
 
 public class PalindromeCheckerApp {
 
@@ -13,26 +12,23 @@ public class PalindromeCheckerApp {
 
 
         // Define input string
-        String input = "civic";
+        String input = "refer";
 
-        // Create Queue (FIFO)
-        Queue<Character> queue = new LinkedList<>();
+        // Create Deque to store characters
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Create Stack (LIFO)
-        Stack<Character> stack = new Stack<>();
-
-        // Insert characters into both queue and stack
+        // Add characters to deque
         for (char c : input.toCharArray()) {
-            queue.add(c);      // Enqueue
-            stack.push(c);     // Push
+            deque.addLast(c);
         }
 
+        // Flag to track palindrome result
         boolean isPalindrome = true;
 
-        // Compare dequeue vs pop
-        while (!queue.isEmpty()) {
+        // Compare front and rear characters
+        while (deque.size() > 1) {
 
-            if (!queue.remove().equals(stack.pop())) {
+            if (deque.removeFirst() != deque.removeLast()) {
                 isPalindrome = false;
                 break;
             }
